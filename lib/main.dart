@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey[900],
         primarySwatch: Colors.blue,
-        fontFamily: 'Roboto',
+        fontFamily: 'Roboto-Light',
       ),
       home: const HomeScreen(),
     );
