@@ -1,4 +1,4 @@
-import 'package:collasable_drawer/screens/home/home_screen.dart';
+import 'package:photoshoot_manager/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey[900],
         primarySwatch: Colors.blue,
-        fontFamily: 'Urbanist',
+        fontFamily: 'Roboto',
       ),
       home: const HomeScreen(),
     );

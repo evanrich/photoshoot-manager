@@ -1,4 +1,4 @@
-import 'package:collasable_drawer/components/drawer/custom_drawer.dart';
+import 'package:photoshoot_manager/components/drawer/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
