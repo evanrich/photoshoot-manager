@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       drawer: const CustomDrawer(),
       body: const Center(
         child: Text(
-          'Collasable drawer',
+          'Photoshoot Manager',
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,

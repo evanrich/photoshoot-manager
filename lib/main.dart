@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Collasable drawer',
+      title: 'Photoshoot Manager',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey[900],
         primarySwatch: Colors.blue,
