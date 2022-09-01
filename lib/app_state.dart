@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import './screens/home/home_screen.dart';
-import 'screens/placeholder_page.dart';
+import 'pages/home/home_page.dart';
+import 'pages/placeholder_page.dart';
 
 enum AppScreens {
   home(HomeScreen()),
