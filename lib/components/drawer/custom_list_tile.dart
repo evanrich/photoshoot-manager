@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CustomListTile extends StatelessWidget {
-  const CustomListTile({
+import '../../app_state.dart';
+
+class CustomListTile extends ConsumerWidget {
+  const CustomListTile(
+    this.page, {
     super.key,
     required this.isCollapsed,
-    required this.icon,
-    required this.title,
-    this.doHaveMoreOptions,
     required this.infoCount,
+    this.doHaveMoreOptions,
   });
+  final AppPages page;
   final bool isCollapsed;
-  final IconData icon;
-  final String title;
-  final IconData? doHaveMoreOptions;
   final int infoCount;
+  final IconData? doHaveMoreOptions;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {},
       child: AnimatedContainer(
@@ -31,7 +32,7 @@ class CustomListTile extends StatelessWidget {
                   clipBehavior: Clip.none,
                   children: [
                     Icon(
-                      icon,
+                      page.icon,
                       color: Colors.white,
                     ),
                     if (infoCount > 0)
@@ -60,7 +61,7 @@ class CustomListTile extends StatelessWidget {
                     Expanded(
                       flex: 4,
                       child: Text(
-                        title,
+                        page.title,
                         style: const TextStyle(
                           fontSize: 20,
                           color: Colors.white,

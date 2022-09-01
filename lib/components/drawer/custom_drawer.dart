@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photoshoot_manager/app_state.dart';
 import 'package:photoshoot_manager/components/drawer/bottom_user_info.dart';
 import 'package:photoshoot_manager/components/drawer/custom_list_tile.dart';
 import 'package:photoshoot_manager/components/drawer/header.dart';
@@ -40,63 +41,54 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   color: Colors.grey,
                 ),
                 CustomListTile(
+                  AppPages.home,
                   isCollapsed: _isCollapsed,
-                  icon: Icons.home_outlined,
-                  title: 'Home',
                   infoCount: 0,
                 ),
                 CustomListTile(
+                  AppPages.calendar,
                   isCollapsed: _isCollapsed,
-                  icon: Icons.calendar_today,
-                  title: 'Calender',
                   infoCount: 0,
                 ),
                 CustomListTile(
+                  AppPages.studios,
                   isCollapsed: _isCollapsed,
-                  icon: Icons.pin_drop,
-                  title: 'Studios',
                   infoCount: 0,
                   doHaveMoreOptions: Icons.arrow_forward_ios,
                 ),
                 CustomListTile(
+                  AppPages.models,
                   isCollapsed: _isCollapsed,
-                  icon: Icons.woman,
-                  title: 'Models',
                   infoCount: 0,
                   doHaveMoreOptions: Icons.arrow_forward_ios,
                 ),
                 CustomListTile(
+                  AppPages.messages,
                   isCollapsed: _isCollapsed,
-                  icon: Icons.message_rounded,
-                  title: 'Messages',
                   infoCount: 8,
                 ),
                 CustomListTile(
+                  AppPages.releases,
                   isCollapsed: _isCollapsed,
-                  icon: Icons.picture_as_pdf,
-                  title: 'Releases',
                   infoCount: 0,
                   doHaveMoreOptions: Icons.arrow_forward_ios,
                 ),
                 CustomListTile(
+                  AppPages.flights,
                   isCollapsed: _isCollapsed,
-                  icon: Icons.airplane_ticket,
-                  title: 'Flights',
                   infoCount: 0,
                   doHaveMoreOptions: Icons.arrow_forward_ios,
                 ),
                 const Divider(color: Colors.grey),
                 // const Spacer(),
                 CustomListTile(
+                  AppPages.notifications,
                   isCollapsed: _isCollapsed,
-                  icon: Icons.notifications,
-                  title: 'Notifications',
                   infoCount: 2,
                 ),
                 CustomListTile(
+                  AppPages.settings,
                   isCollapsed: _isCollapsed,
-                  icon: Icons.settings,
-                  title: 'Settings',
                   infoCount: 0,
                 ),
                 const SizedBox(height: 10),
