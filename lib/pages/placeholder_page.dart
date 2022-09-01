@@ -2,14 +2,18 @@
 import 'package:flutter/material.dart';
 
 class PlaceholderPage extends StatelessWidget {
-  const PlaceholderPage({super.key});
+  const PlaceholderPage({
+    super.key,
+    this.title = 'Todo page',
+  });
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Text(
-        'Photoshoot Manager - Todo page',
-        style: TextStyle(
+        title,
+        style: const TextStyle(
           color: Colors.black,
           fontSize: 18,
         ),
