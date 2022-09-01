@@ -1,17 +1,19 @@
 # Journal of Edits
-with simple explainations of what I did and why
+A simple journal of what I did, in what order, and why.
 
 ## `dart fix --apply`
 First of all I've set up Visual Studio Code to apply auto fixes on your codebase on save.
 Then, I added the most recent version of Dart lints, by:
   - Updating `flutter_lints v2.0.1` as a dependency on `pubspec.yaml`;
-  - Adding `analysis_options.yaml` to instruct the linter on what to fix;
+  - Adding a new `analysis_options.yaml` file to instruct the linter on what to fix;
   - Executing `dart fix --dry-run` to review the changes that would be made by the formatter and linter;
   - Executing `dart fix --apply` to actually apply such changes.
 
 This is useful because you want your codebase to be readable. This was _not_ requested by you, but I find it very important to deliver a better developer experience to you. One of the most important rules of Software Engineering that I've stumbled upon is: _In your dev path, you'll read **a lot** more code than you'll write, so make sure your code is readable_.
 
-The previous sentence will guide most of the refactoring I'm going to apply in order to achieve the requirements in `TODO.md`.
+Since you need to _read_ my changes, I am sure this will surely help.
+
+This reasoning will guide most of the refactoring I'm going to apply in order to achieve the requirements in `TODO.md`. Most of the times it feels like I'm "wasting time", but most of the steps are necessary to achieve what you've requested.
 
 ## Lifting State Up: a premise
 The following is another important premise to allow your requested fixes to be implemented.
@@ -75,9 +77,28 @@ I've created the `enum` and its `StateNotifier` (to hold state) in `home_screen_
 The enum holds its corresponding screen to be shown in it.
 
 A simple `StateProvider`exposes this state so that it can be listened to from our Widget Tree.
+As the documentation of Riverpod states, one could listen to a Provider like so:
+
+```dart
+class MyListenerWidget extends ConsumerWidget {  // Riverpod special Widget!
+  const MyListenerWidget();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {  // Riverpod special build method
+    // the following means: "I'm listening to this provider AND I will rebuild on its changes"
+    final selectedScreen = ref.watch(selectedPageProvider);  
+
+    return Container(
+      // do something with `selectedScreen`...
+    );
+  }
+}
+```
+
+The above example is actually 99% close to the actual implementation: yes, that's really all it takes.
 
 ### Refactoring of the app
-Now we're ready to change your Widget Tree so that we can satisfy the requirements.
+Now we're ready to change your Widget Tree so that we can satisfy the requirements; before we actually write code that behaves as mentioned above, we need to touch the code base once more.
 
 #### Renaming and small refactorings
 First, we're going to refactor the `HomeScreen` widget by renaming it. There should be a global "AppWidget" that reacts to state changes. `HomeScreen` should just refer - indeed - to the home screen.
@@ -107,3 +128,20 @@ To avoid this, one simple solution could be to wrap our drawer in a `SingleChild
 
 I'll avoid explaining why I slightly refactored this UI part, but I can explain later if you need. Now, let's actually implement what you need.
 
+
+## Implementing the screen-change
+Finally, we should trigger the screen change via the `onTap` event.
+
+Simply, instead of searching a way to use `setState` on the icon widget, we use Riverpod to trigger the state change via `StateProvider`.
+
+Some refactoring are be applied, too, in order to have more readable and reusable code.
+  1. I've moved out the "fixed" items for each menu item to the state, so that their features are centralized in one single, visible, reusable piece of logic;
+  2. I refactored `CustomListTile` indeed accept our enum as property, so it can exploit the logic in it
+
+Now we're ready to trigger the `onTap` event via a single line of code:
+```dart
+  ref.read(selectedPageProvider.notifier).state = page;
+```
+Here, we tell the `StateProvider`: "hey, the user requested for _this_ page. Change it.".
+
+And... voilà! The listeners will react to that change (as we did a few steps ago): the page behind changes.
