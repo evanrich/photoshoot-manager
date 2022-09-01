@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photoshoot_manager/components/drawer/custom_drawer.dart';
+import 'package:photoshoot_manager/screens/home/home_screen_providers.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,15 +17,18 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
       ),
       drawer: const CustomDrawer(),
-      body: const Center(
-        child: Text(
-          'Photoshoot Manager',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-          ),
-        ),
-      ),
+      body: const _Pages(),
     );
+  }
+}
+
+class _Pages extends ConsumerWidget {
+  const _Pages();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedScreen = ref.watch(selectedScreenProvider);
+
+    return selectedScreen.screen;
   }
 }
