@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:photoshoot_manager/pages/placeholder_page.dart';
 
-class MapPage extends StatelessWidget {
-  const MapPage({super.key});
+class StudiosPage extends StatelessWidget {
+  const StudiosPage({super.key});
 
   @override
   Widget build(BuildContext context) {

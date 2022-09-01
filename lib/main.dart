@@ -41,7 +41,7 @@ class _Pages extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedScreen = ref.watch(selectedScreenProvider);
+    final selectedScreen = ref.watch(selectedPageProvider);
 
     return selectedScreen.page;
   }

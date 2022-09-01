@@ -3,17 +3,18 @@
 import 'package:flutter/material.dart';
 
 import 'pages/calendar/calendar_page.dart';
-import 'pages/clients/clients_page.dart';
 import 'pages/home/home_page.dart';
-import 'pages/map/map_page.dart';
+import 'pages/messages/messages_page.dart';
+import 'pages/models/models_page.dart';
 import 'pages/placeholder_page.dart';
+import 'pages/studios/studios_page.dart';
 
 enum AppScreens {
   home(HomeScreen()),
   calendar(CalendarPage()),
-  map(MapPage()),
-  clients(ClientsPage()),
-  chat(PlaceholderPage()),
+  studios(StudiosPage()),
+  models(ModelsPage()),
+  messages(MessagesPage()),
   documents(PlaceholderPage()),
   travels(PlaceholderPage()),
   notifications(PlaceholderPage()),
