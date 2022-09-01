@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class BottomUserInfo extends StatelessWidget {
-
   const BottomUserInfo({
-    Key? key,
+    super.key,
     required this.isCollapsed,
-  }) : super(key: key);
+  });
   final bool isCollapsed;
 
   @override

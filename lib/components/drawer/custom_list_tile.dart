@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
-
   const CustomListTile({
-    Key? key,
+    super.key,
     required this.isCollapsed,
     required this.icon,
     required this.title,
     this.doHaveMoreOptions,
     required this.infoCount,
-  }) : super(key: key);
+  });
   final bool isCollapsed;
   final IconData icon;
   final String title;

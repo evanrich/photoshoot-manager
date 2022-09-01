@@ -4,7 +4,7 @@ import 'package:photoshoot_manager/components/drawer/custom_list_tile.dart';
 import 'package:photoshoot_manager/components/drawer/header.dart';
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({Key? key}) : super(key: key);
+  const CustomDrawer({super.key});
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();

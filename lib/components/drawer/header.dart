@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomDrawerHeader extends StatelessWidget {
-
   const CustomDrawerHeader({
-    Key? key,
+    super.key,
     required this.isColapsed,
-  }) : super(key: key);
+  });
   final bool isColapsed;
 
   @override
