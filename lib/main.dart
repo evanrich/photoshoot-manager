@@ -43,6 +43,6 @@ class _Pages extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedScreen = ref.watch(selectedScreenProvider);
 
-    return selectedScreen.screen;
+    return selectedScreen.page;
   }
 }
