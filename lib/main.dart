@@ -1,5 +1,5 @@
-import 'package:photoshoot_manager/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:photoshoot_manager/screens/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());

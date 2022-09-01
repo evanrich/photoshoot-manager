@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:photoshoot_manager/components/drawer/bottom_user_info.dart';
 import 'package:photoshoot_manager/components/drawer/custom_list_tile.dart';
 import 'package:photoshoot_manager/components/drawer/header.dart';
-import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -32,7 +32,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CustomDrawerHeader(isColapsed: _isCollapsed),
               const Divider(

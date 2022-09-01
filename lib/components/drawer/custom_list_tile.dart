@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
-  final bool isCollapsed;
-  final IconData icon;
-  final String title;
-  final IconData? doHaveMoreOptions;
-  final int infoCount;
 
   const CustomListTile({
     Key? key,
@@ -15,6 +10,11 @@ class CustomListTile extends StatelessWidget {
     this.doHaveMoreOptions,
     required this.infoCount,
   }) : super(key: key);
+  final bool isCollapsed;
+  final IconData icon;
+  final String title;
+  final IconData? doHaveMoreOptions;
+  final int infoCount;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +98,6 @@ class CustomListTile extends StatelessWidget {
             if (isCollapsed) const Spacer(),
             if (isCollapsed)
               Expanded(
-                flex: 1,
                 child: doHaveMoreOptions != null
                     ? IconButton(
                         icon: Icon(

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomDrawerHeader extends StatelessWidget {
-  final bool isColapsed;
 
   const CustomDrawerHeader({
     Key? key,
     required this.isColapsed,
   }) : super(key: key);
+  final bool isColapsed;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,6 @@ class CustomDrawerHeader extends StatelessWidget {
           if (isColapsed) const Spacer(),
           if (isColapsed)
             Expanded(
-              flex: 1,
               child: IconButton(
                 onPressed: () {},
                 icon: const Icon(
