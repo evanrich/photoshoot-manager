@@ -28,98 +28,101 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           color: Color.fromRGBO(20, 20, 20, 1),
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomDrawerHeader(isColapsed: _isCollapsed),
-              const Divider(
-                color: Colors.grey,
-              ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.home_outlined,
-                title: 'Home',
-                infoCount: 0,
-              ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.calendar_today,
-                title: 'Calender',
-                infoCount: 0,
-              ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.pin_drop,
-                title: 'Studios',
-                infoCount: 0,
-                doHaveMoreOptions: Icons.arrow_forward_ios,
-              ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.woman,
-                title: 'Models',
-                infoCount: 0,
-                doHaveMoreOptions: Icons.arrow_forward_ios,
-              ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.message_rounded,
-                title: 'Messages',
-                infoCount: 8,
-              ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.picture_as_pdf,
-                title: 'Releases',
-                infoCount: 0,
-                doHaveMoreOptions: Icons.arrow_forward_ios,
-              ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.airplane_ticket,
-                title: 'Flights',
-                infoCount: 0,
-                doHaveMoreOptions: Icons.arrow_forward_ios,
-              ),
-              const Divider(color: Colors.grey),
-              const Spacer(),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.notifications,
-                title: 'Notifications',
-                infoCount: 2,
-              ),
-              CustomListTile(
-                isCollapsed: _isCollapsed,
-                icon: Icons.settings,
-                title: 'Settings',
-                infoCount: 0,
-              ),
-              const SizedBox(height: 10),
-              BottomUserInfo(isCollapsed: _isCollapsed),
-              Align(
-                alignment: _isCollapsed
-                    ? Alignment.bottomRight
-                    : Alignment.bottomCenter,
-                child: IconButton(
-                  splashColor: Colors.transparent,
-                  icon: Icon(
-                    _isCollapsed
-                        ? Icons.arrow_back_ios
-                        : Icons.arrow_forward_ios,
-                    color: Colors.white,
-                    size: 16,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _isCollapsed = !_isCollapsed;
-                    });
-                  },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomDrawerHeader(isColapsed: _isCollapsed),
+                const Divider(
+                  color: Colors.grey,
                 ),
-              ),
-            ],
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.home_outlined,
+                  title: 'Home',
+                  infoCount: 0,
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.calendar_today,
+                  title: 'Calender',
+                  infoCount: 0,
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.pin_drop,
+                  title: 'Studios',
+                  infoCount: 0,
+                  doHaveMoreOptions: Icons.arrow_forward_ios,
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.woman,
+                  title: 'Models',
+                  infoCount: 0,
+                  doHaveMoreOptions: Icons.arrow_forward_ios,
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.message_rounded,
+                  title: 'Messages',
+                  infoCount: 8,
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.picture_as_pdf,
+                  title: 'Releases',
+                  infoCount: 0,
+                  doHaveMoreOptions: Icons.arrow_forward_ios,
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.airplane_ticket,
+                  title: 'Flights',
+                  infoCount: 0,
+                  doHaveMoreOptions: Icons.arrow_forward_ios,
+                ),
+                const Divider(color: Colors.grey),
+                // const Spacer(),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.notifications,
+                  title: 'Notifications',
+                  infoCount: 2,
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.settings,
+                  title: 'Settings',
+                  infoCount: 0,
+                ),
+                const SizedBox(height: 10),
+                Flexible(child: BottomUserInfo(isCollapsed: _isCollapsed)),
+                Align(
+                  alignment: _isCollapsed
+                      ? Alignment.bottomRight
+                      : Alignment.bottomCenter,
+                  child: IconButton(
+                    splashColor: Colors.transparent,
+                    icon: Icon(
+                      _isCollapsed
+                          ? Icons.arrow_back_ios
+                          : Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 16,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isCollapsed = !_isCollapsed;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
