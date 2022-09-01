@@ -2,8 +2,11 @@
 
 import 'package:flutter/material.dart';
 
+import './screens/home/home_screen.dart';
+import 'screens/placeholder_page.dart';
+
 enum AppScreens {
-  home(PlaceholderPage()),
+  home(HomeScreen()),
   calendar(PlaceholderPage()),
   map(PlaceholderPage()),
   clients(PlaceholderPage()),
@@ -21,21 +24,3 @@ enum AppScreens {
 // class AppScreensNotifier extends StateNotifier<AppScreens> {
 //   AppScreensNotifier() : super(AppScreens.home);
 // }
-
-// For unimplemented pages
-class PlaceholderPage extends StatelessWidget {
-  const PlaceholderPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Photoshoot Manager - Todo page',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 18,
-        ),
-      ),
-    );
-  }
-}
