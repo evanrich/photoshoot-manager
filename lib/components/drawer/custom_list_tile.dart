@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../app_providers.dart';
 import '../../app_state.dart';
 
 class CustomListTile extends ConsumerWidget {
@@ -19,7 +20,9 @@ class CustomListTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        ref.read(selectedPageProvider.notifier).state = page;
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
         width: isCollapsed ? 300 : 80,
