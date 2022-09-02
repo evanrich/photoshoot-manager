@@ -9,12 +9,12 @@ class CustomListTile extends ConsumerWidget {
   const CustomListTile(
     this.page, {
     super.key,
-    required this.isCollapsed,
+    required this.isExpanded,
     required this.infoCount,
     this.doHaveMoreOptions,
   });
   final AppPages page;
-  final bool isCollapsed;
+  final bool isExpanded;
   final int infoCount;
   final IconData? doHaveMoreOptions;
 
@@ -26,7 +26,7 @@ class CustomListTile extends ConsumerWidget {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
-        width: isCollapsed ? 300 : 80,
+        width: isExpanded ? 300 : 80,
         height: 80,
         child: Row(
           children: [
@@ -36,8 +36,8 @@ class CustomListTile extends ConsumerWidget {
               badgeColor: Colors.purple.shade200,
               child: Icon(page.icon, color: Colors.white),
             ),
-            if (isCollapsed) const SizedBox(width: 10),
-            if (isCollapsed)
+            if (isExpanded) const SizedBox(width: 10),
+            if (isExpanded)
               Expanded(
                 child: Text(
                   page.title,
@@ -49,8 +49,8 @@ class CustomListTile extends ConsumerWidget {
                   overflow: TextOverflow.clip,
                 ),
               ),
-            if (isCollapsed) const Spacer(),
-            if (isCollapsed)
+            if (isExpanded) const Spacer(),
+            if (isExpanded)
               Expanded(
                 child: doHaveMoreOptions != null
                     ? IconButton(

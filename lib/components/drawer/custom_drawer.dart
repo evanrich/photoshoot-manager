@@ -12,7 +12,7 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  bool _isCollapsed = false;
+  bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: AnimatedContainer(
         curve: Curves.easeInOutCubic,
         duration: const Duration(milliseconds: 500),
-        width: _isCollapsed ? 300 : 70,
+        width: _isExpanded ? 300 : 70,
         margin: const EdgeInsets.only(bottom: 10, top: 10),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -36,46 +36,46 @@ class _CustomDrawerState extends State<CustomDrawer> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomDrawerHeader(isColapsed: _isCollapsed),
+                CustomDrawerHeader(isColapsed: _isExpanded),
                 const Divider(
                   color: Colors.grey,
                 ),
                 CustomListTile(
                   AppPages.home,
-                  isCollapsed: _isCollapsed,
+                  isExpanded: _isExpanded,
                   infoCount: 0,
                 ),
                 CustomListTile(
                   AppPages.calendar,
-                  isCollapsed: _isCollapsed,
+                  isExpanded: _isExpanded,
                   infoCount: 0,
                 ),
                 CustomListTile(
                   AppPages.studios,
-                  isCollapsed: _isCollapsed,
+                  isExpanded: _isExpanded,
                   infoCount: 0,
                   doHaveMoreOptions: Icons.arrow_forward_ios,
                 ),
                 CustomListTile(
                   AppPages.models,
-                  isCollapsed: _isCollapsed,
+                  isExpanded: _isExpanded,
                   infoCount: 0,
                   doHaveMoreOptions: Icons.arrow_forward_ios,
                 ),
                 CustomListTile(
                   AppPages.messages,
-                  isCollapsed: _isCollapsed,
+                  isExpanded: _isExpanded,
                   infoCount: 8,
                 ),
                 CustomListTile(
                   AppPages.releases,
-                  isCollapsed: _isCollapsed,
+                  isExpanded: _isExpanded,
                   infoCount: 0,
                   doHaveMoreOptions: Icons.arrow_forward_ios,
                 ),
                 CustomListTile(
                   AppPages.flights,
-                  isCollapsed: _isCollapsed,
+                  isExpanded: _isExpanded,
                   infoCount: 0,
                   doHaveMoreOptions: Icons.arrow_forward_ios,
                 ),
@@ -83,24 +83,24 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 // const Spacer(),
                 CustomListTile(
                   AppPages.notifications,
-                  isCollapsed: _isCollapsed,
+                  isExpanded: _isExpanded,
                   infoCount: 2,
                 ),
                 CustomListTile(
                   AppPages.settings,
-                  isCollapsed: _isCollapsed,
+                  isExpanded: _isExpanded,
                   infoCount: 0,
                 ),
                 const SizedBox(height: 10),
-                Flexible(child: BottomUserInfo(isCollapsed: _isCollapsed)),
+                Flexible(child: BottomUserInfo(isCollapsed: _isExpanded)),
                 Align(
-                  alignment: _isCollapsed
+                  alignment: _isExpanded
                       ? Alignment.bottomRight
                       : Alignment.bottomCenter,
                   child: IconButton(
                     splashColor: Colors.transparent,
                     icon: Icon(
-                      _isCollapsed
+                      _isExpanded
                           ? Icons.arrow_back_ios
                           : Icons.arrow_forward_ios,
                       color: Colors.white,
@@ -108,7 +108,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     ),
                     onPressed: () {
                       setState(() {
-                        _isCollapsed = !_isCollapsed;
+                        _isExpanded = !_isExpanded;
                       });
                     },
                   ),
