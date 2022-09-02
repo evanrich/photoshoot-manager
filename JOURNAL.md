@@ -145,3 +145,77 @@ Now we're ready to trigger the `onTap` event via a single line of code:
 Here, we tell the `StateProvider`: "hey, the user requested for _this_ page. Change it.".
 
 And... voilà! The listeners will react to that change (as we did a few steps ago): the page behind changes.
+
+## The "jump" effect on the Drawer's animation
+The reason there's a jump at the start and at the end of the animation is straightforward: starting and final sizes don't match when the animation starts.
+
+A quick analysis lead me towards noticing the following into the drawer:
+  1. There are _many_ `AnimatedContainer`s: one for each tile, and one for the parent widget (drawer). Probably you've added so many of them because you've noticed that when the first `AnimatedContainer` is animating (expanding / shrinking) your contents will most likely show overflowing warnings while animating. This can be avoided by implementing our own custom animation. But to address and to actually _show_ that this is the case, we should simplify the layouting and the implementations. This should highlight the "jump problem" better. So...
+  2. The layout of the single `CustomListTile` confuses me some times: there are two rows, nested in each other. Maybe this can be simplified in order to be able to work with it, as discussed above;
+  3. You've done a great work placing the red dot icons on the "important" menu items (or "unread"), but that's heavy overhead that could be avoided. I personally dislike working with `Stack` unless _I have to_, because they introduce some heavy complexity, often unneeded. Have you tried using [this package](https://pub.dev/packages/badges)? I'll use it for you to show how easy it is to add what you need there;
+  5. Some expanded menu items are hidden by the notification count. To simplify things, I'll move the notification count up into the badge, so it's simpler and it solves this problem directly.
+
+Let's start working on this with the low handing fruits first.
+
+### Badges (3.)
+First, let's install `badges v2.0.3` via the `flutter pub add badges` command. Then, let's use it inside our `CustomListTile`.
+
+Using a Badge is as easy as the following:
+```dart
+Badge(
+  // only show the badge if there's a notification
+  showBadge: infoCount > 0,
+  // the content should just be the plain counter
+  badgeContent: Text('$infoCount'),
+  // I modified the color to match what you've chosen
+  badgeColor: Colors.purple.shade200,
+  // in your use case, the child is just a simple icon (which is common)
+  child: Icon(page.icon, color: Colors.white),
+),
+```
+
+This allows us (the devs) to simplify our drawer tile a lot: we can now just rely on this new badge without the complicated layout we built before.
+
+Also, I slightly corrected the `SizedBox`'s width.
+
+#### `_isCollapsed` behavior
+While testing what I did above, I noticed some more weird behavior from our app.
+
+The `isCollapsed` parameter is behaving at the exact opposite as I'd expect: when it's `true` I'd expect the drawer to be minimized; otherwise, the drawer should expand. Instead, it behaves as the exact opposite: this is probably unintended / bug. Don't worry, _naming things is hard_ and probably one of the most hard things in Computer Science in general. This needs a quick refactoring that will improve readability.
+
+I'll simply rename this parameter `_isExpanded`, so its intentions are clearer / more understandable.
+
+### Simplifying `CustomListTile` Layout (2.)
+While trying to address the "jump" problem, I think there's room to improve the layout of this custom tile. This is important as it will simplify the implementation of the actual solution later.
+
+I see there's a little problem with how the `doHaveMoreOptions` is layouted: I can see a `Spacer` property is being exploited to add proportional space between the `title` and the "more options" button.
+
+This causes the title to be "cut away" from the layout when the text is too long.
+
+We can work around this by refactoring the layout; the actual implementation you'll find in my commits is actuall very close to this pseudo code:
+
+```dart
+Row(
+  mainAxisAlignment:
+    // this is important to correctly layout the row
+    isExpanded ? MainAxisAlignment.start : MainAxisAlignment.center,
+    children: [
+      Badge(... our badge ...),
+      // if we want to see more, we spread all the following widgets into the row
+      if (isExpanded) ...[
+        const SizedBox(width: 15),
+        Text(... our title ...),
+        Expanded(
+          // forces this symbol to take the remaining of the row
+          child: Align(
+            // after taking all of the space available, this occupies the rightmost space available
+            alignment: Alignment.centerRight,
+            child: doHaveMoreOptions == null
+                ? const SizedBox.shrink()  // it will disappear when the drawer is collapsed
+                : IconButton(... right arrow button ...),
+          ),
+        ),
+      ]
+    ],
+)
+```
