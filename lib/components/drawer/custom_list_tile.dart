@@ -24,46 +24,50 @@ class CustomListTile extends ConsumerWidget {
       onTap: () {
         ref.read(selectedPageProvider.notifier).state = page;
       },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 500),
-        width: isExpanded ? 300 : 80,
+      child: SizedBox(
         height: 80,
-        child: Row(
-          children: [
-            Badge(
-              showBadge: infoCount > 0,
-              badgeContent: Text('$infoCount'),
-              badgeColor: Colors.purple.shade200,
-              child: Icon(page.icon, color: Colors.white),
-            ),
-            if (isExpanded) const SizedBox(width: 10),
-            if (isExpanded)
-              Expanded(
-                child: Text(
+        width: isExpanded ? 300 : 80,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment:
+                isExpanded ? MainAxisAlignment.start : MainAxisAlignment.center,
+            children: [
+              Badge(
+                showBadge: infoCount > 0,
+                badgeContent: Text('$infoCount'),
+                badgeColor: Colors.purple.shade200,
+                child: Icon(page.icon, color: Colors.white),
+              ),
+              if (isExpanded) ...[
+                const SizedBox(width: 15),
+                Text(
                   page.title,
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                   ),
                   maxLines: 1,
-                  overflow: TextOverflow.clip,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-            if (isExpanded) const Spacer(),
-            if (isExpanded)
-              Expanded(
-                child: doHaveMoreOptions != null
-                    ? IconButton(
-                        icon: Icon(
-                          doHaveMoreOptions,
-                          color: Colors.white,
-                          size: 12,
-                        ),
-                        onPressed: () {},
-                      )
-                    : const Center(),
-              ),
-          ],
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: doHaveMoreOptions == null
+                        ? const SizedBox.shrink()
+                        : IconButton(
+                            icon: Icon(
+                              doHaveMoreOptions,
+                              color: Colors.white,
+                              size: 12,
+                            ),
+                            onPressed: () {},
+                          ),
+                  ),
+                ),
+              ]
+            ],
+          ),
         ),
       ),
     );
