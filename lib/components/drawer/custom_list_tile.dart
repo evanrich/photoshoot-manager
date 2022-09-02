@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -29,73 +30,23 @@ class CustomListTile extends ConsumerWidget {
         height: 80,
         child: Row(
           children: [
-            Expanded(
-              child: Center(
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Icon(
-                      page.icon,
-                      color: Colors.white,
-                    ),
-                    if (infoCount > 0)
-                      Positioned(
-                        right: -5,
-                        top: -5,
-                        child: Container(
-                          height: 10,
-                          width: 10,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.red,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
+            Badge(
+              showBadge: infoCount > 0,
+              badgeContent: Text('$infoCount'),
+              badgeColor: Colors.purple.shade200,
+              child: Icon(page.icon, color: Colors.white),
             ),
             if (isCollapsed) const SizedBox(width: 10),
             if (isCollapsed)
               Expanded(
-                flex: 3,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 4,
-                      child: Text(
-                        page.title,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
-                      ),
-                    ),
-                    if (infoCount > 0)
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 10),
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.purple[200],
-                          ),
-                          child: Center(
-                            child: Text(
-                              infoCount.toString(),
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
+                child: Text(
+                  page.title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.clip,
                 ),
               ),
             if (isCollapsed) const Spacer(),
