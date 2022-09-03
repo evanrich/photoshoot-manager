@@ -26,7 +26,6 @@ class CustomListTile extends ConsumerWidget {
       },
       child: SizedBox(
         height: 80,
-        width: isExpanded ? 300 : 80,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
