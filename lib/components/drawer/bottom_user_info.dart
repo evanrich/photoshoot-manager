@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:photoshoot_manager/components/drawer/drawer_providers.dart';
 
-class BottomUserInfo extends StatelessWidget {
-  const BottomUserInfo({
-    super.key,
-    required this.isCollapsed,
-  });
-  final bool isCollapsed;
+class BottomUserInfo extends ConsumerWidget {
+  const BottomUserInfo({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      height: isCollapsed ? 70 : 100,
-      width: double.infinity,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isExpanded = ref.watch(isExpandedProvider);
+
+    return Container(
+      height: isExpanded ? 70 : 100,
       decoration: BoxDecoration(
         color: Colors.white10,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: isCollapsed
+      child: isExpanded
           ? Center(
               child: Row(
                 children: [

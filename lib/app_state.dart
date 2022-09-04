@@ -64,6 +64,22 @@ enum AppPages {
   final Widget page;
   final IconData icon;
   final String title;
+
+  bool get hasMoreOptions {
+    switch (this) {
+      case AppPages.home:
+      case AppPages.calendar:
+      case AppPages.messages:
+      case AppPages.notifications:
+      case AppPages.settings:
+        return false;
+      case AppPages.studios:
+      case AppPages.models:
+      case AppPages.releases:
+      case AppPages.flights:
+        return true;
+    }
+  }
 }
 
 // The following might not be useful atm and will probably be deleted
