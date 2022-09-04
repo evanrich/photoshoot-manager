@@ -219,3 +219,36 @@ Row(
     ],
 )
 ```
+
+### Fixing the animation problems (1.)
+Now to the real deal: addressing the jump effects. The simplifications above were actually very useful, as it allowed me to see what was going on when the jumps occurred.
+
+The animation problems actually _worsened_ after our refactoring (now the tiles overflow while animating), but:
+  1. This pretty common when trying to address these kinds of issues;
+  2. This is good, as we can see what the problem is.
+
+When the parent `AnimatedContainer` (the drawer) animates, Flutter has _no way_ of knowing how to correctly layout its children.
+
+This implies that when the drawer is expanding, at the start of the animation (and immediately after) the text will overflow and Flutter will complain about it. Also, this is not so great UX.
+
+Furthermore, when shrinking, the `Row` will change its layouting rules (from `start` to `center`) and another ugly jump is shown.
+
+#### How to actually solve this?
+I just did a heavy refactoring to solve this, but in a nusthell...
+
+At the end of the day, we need to do two things:
+  1. Animate the SIZE of the drawer
+  2. Animate the fact that the latter part of the drawer tile _disappear_ upon animating
+
+To do so, again, _there are widgets for that_. The former is addressed with `AnimatedSize`. The latter with `AnimatedSwitcher`.
+Finally, I've done two things to improve the solution:
+  1. I've made your Menu an actual part of the layout. The drawer isn't really your use case.
+  2. I've removed the AppBar as it uselessly clutters the view (as a demo), but you could re-add it anytime you want.
+  3. I've removed the "blackened" effect onto the actual page to more clearly see the page switch
+
+
+#### Scaling up
+As a bonus....
+
+"e se voglio mettere un sottomenu là dentro?"
+use: https://www.youtube.com/watch?v=2aJZzRMziJc
