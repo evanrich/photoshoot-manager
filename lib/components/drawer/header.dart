@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:photoshoot_manager/components/drawer/drawer_providers.dart';
 
-class CustomDrawerHeader extends StatelessWidget {
-  final bool isColapsed;
-
-  const CustomDrawerHeader({
-    Key? key,
-    required this.isColapsed,
-  }) : super(key: key);
+class CustomDrawerHeader extends ConsumerWidget {
+  const CustomDrawerHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isExpanded = ref.watch(isExpandedProvider);
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 500),
       height: 60,
@@ -18,32 +17,26 @@ class CustomDrawerHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const FlutterLogo(size: 30),
-          if (isColapsed) const SizedBox(width: 10),
-          if (isColapsed)
-            const Expanded(
-              flex: 3,
-              child: Text(
-                'Photoshoot Manager',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-                maxLines: 1,
+          if (isExpanded) ...[
+            const SizedBox(width: 10),
+            const Text(
+              'Photoshoot Manager',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+              maxLines: 1,
+            ),
+            const Spacer(),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
               ),
             ),
-          if (isColapsed) const Spacer(),
-          if (isColapsed)
-            Expanded(
-              flex: 1,
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+          ],
         ],
       ),
     );

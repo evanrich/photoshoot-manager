@@ -1,0 +1,12 @@
+{
+  // Dart auto formatting and auto fixing on save
+  "[dart]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.maxTokenizationLineLength": 80,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
+  },
+}

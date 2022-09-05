@@ -1,12 +1,15 @@
-import 'package:photoshoot_manager/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'app_providers.dart';
+import 'components/drawer/menu.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,29 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Roboto-Light',
       ),
-      home: const HomeScreen(),
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        extendBodyBehindAppBar: true,
+        body: SafeArea(
+          child: Row(
+            children: const [
+              Menu(),
+              Expanded(child: Center(child: _Pages())),
+            ],
+          ),
+        ),
+      ),
     );
+  }
+}
+
+class _Pages extends ConsumerWidget {
+  const _Pages();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedScreen = ref.watch(selectedPageProvider);
+
+    return selectedScreen.page;
   }
 }
