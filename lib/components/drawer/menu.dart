@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app_state.dart';
-import 'bottom_user_info.dart';
 import 'drawer_providers.dart';
 import 'header.dart';
 import 'menu_tile.dart';
@@ -19,13 +18,13 @@ class Menu extends ConsumerWidget {
       child: AnimatedSize(
         alignment: Alignment.centerLeft,
         duration: const Duration(milliseconds: 500),
-        curve: Curves.easeIn,
+        curve: Curves.easeInOutCubicEmphasized,
         child: InkWell(
           onTap: () {
             ref.read(isExpandedProvider.notifier).update((state) => !state);
           },
           child: SizedBox(
-            width: isExpanded ? 350 : 70,
+            width: isExpanded ? 300 : 65,
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -52,15 +51,7 @@ class Menu extends ConsumerWidget {
                       infoCount: 0,
                     ),
                     const MenuTile(
-                      AppPages.messages,
-                      infoCount: 8,
-                    ),
-                    const MenuTile(
                       AppPages.releases,
-                      infoCount: 0,
-                    ),
-                    const MenuTile(
-                      AppPages.flights,
                       infoCount: 0,
                     ),
                     const Divider(color: Colors.grey),
@@ -74,7 +65,6 @@ class Menu extends ConsumerWidget {
                       infoCount: 0,
                     ),
                     const SizedBox(height: 10),
-                    const Flexible(child: BottomUserInfo()),
                     Align(
                       alignment: isExpanded
                           ? Alignment.bottomRight
