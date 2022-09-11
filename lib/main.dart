@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Roboto-Light',
       ),
       home: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 43, 43, 43),
         extendBodyBehindAppBar: true,
         body: SafeArea(
           child: Row(

@@ -14,7 +14,7 @@ class CustomDrawerHeader extends ConsumerWidget {
       height: 60,
       width: double.infinity,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        //mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const FlutterLogo(size: 30),
           if (isExpanded) ...[
@@ -23,19 +23,13 @@ class CustomDrawerHeader extends ConsumerWidget {
               'Photoshoot Manager',
               style: TextStyle(
                 color: Colors.white,
+                fontFamily: 'Roboto',
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontSize: 20,
               ),
               maxLines: 1,
             ),
             const Spacer(),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-            ),
           ],
         ],
       ),
