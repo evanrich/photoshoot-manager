@@ -6,13 +6,13 @@ import 'drawer_providers.dart';
 import 'header.dart';
 import 'menu_tile.dart';
 
-class Menu extends ConsumerWidget {
-  const Menu({super.key});
+class Menu2 extends ConsumerWidget {
+  const Menu2({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(isExpandedProvider.notifier).update((state) => true);
     final isExpanded = ref.watch(isExpandedProvider);
-
     return ColoredBox(
       color: const Color.fromRGBO(20, 20, 20, 1),
       child: AnimatedSize(
@@ -21,69 +21,53 @@ class Menu extends ConsumerWidget {
         curve: Curves.easeInOutCubicEmphasized,
         child: InkWell(
           onTap: () {
-            //ref.read(isExpandedProvider.notifier).update((state) => !state);
+            //ref.read(isExpandedProvider.notifier).update(
+            //       (state) => isExpanded ? false : true,
+            //     );
+            //ref.read(isExpandedProvider.notifier).update((state) => false);
           },
           child: SizedBox(
-            width: isExpanded ? 300 : 65,
+            //width: isExpanded ? 300 : 65,
+            //width: 350,
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CustomDrawerHeader(),
-                    const Divider(color: Colors.grey),
-                    const MenuTile(
+                  children: const [
+                    CustomDrawerHeader(),
+                    Divider(color: Colors.grey),
+                    MenuTile(
                       AppPages.home,
                       infoCount: 0,
                     ),
-                    const MenuTile(
+                    MenuTile(
                       AppPages.calendar,
                       infoCount: 0,
                     ),
-                    const MenuTile(
+                    MenuTile(
                       AppPages.studios,
                       infoCount: 0,
                     ),
-                    const MenuTile(
+                    MenuTile(
                       AppPages.models,
                       infoCount: 0,
                     ),
-                    const MenuTile(
+                    MenuTile(
                       AppPages.releases,
                       infoCount: 0,
                     ),
-                    const Divider(color: Colors.grey),
+                    Divider(color: Colors.grey),
                     // const Spacer(),
-                    const MenuTile(
+                    MenuTile(
                       AppPages.notifications,
                       infoCount: 2,
                     ),
-                    const MenuTile(
+                    MenuTile(
                       AppPages.settings,
                       infoCount: 0,
-                    ),
-                    const SizedBox(height: 10),
-                    Align(
-                      alignment: isExpanded
-                          ? Alignment.bottomRight
-                          : Alignment.bottomCenter,
-                      child: IconButton(
-                        splashColor: Colors.transparent,
-                        icon: Icon(
-                          isExpanded
-                              ? Icons.arrow_back_ios
-                              : Icons.arrow_forward_ios,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        onPressed: () {
-                          ref
-                              .read(isExpandedProvider.notifier)
-                              .update((state) => !state);
-                        },
-                      ),
                     ),
                   ],
                 ),
