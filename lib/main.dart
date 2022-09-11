@@ -22,7 +22,17 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Roboto-Light',
       ),
       home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 43, 43, 43),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        appBar: AppBar(
+          backgroundColor: const Color.fromRGBO(20, 20, 20, 1),
+          elevation: 50,
+          leading: IconButton(
+            icon: const Icon(Icons.menu),
+            tooltip: 'Menu Icon',
+            onPressed: () {},
+          ),
+          //systemOverlayStyle: SystemUiOverlayStyle.light,
+        ),
         extendBodyBehindAppBar: true,
         body: SafeArea(
           child: Row(
